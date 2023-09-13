@@ -1,0 +1,24 @@
+<h3>Compre pela <span>Marca</span></h3>
+<div class="container-brands">
+    {% set id_categories = [146] %} <!-- id da categoria [Marcas] -->
+    {% for level1 in categories %}
+    	{% if level1.id in id_categories %}
+            {% if loop.index <= limit or not limit %}
+            	{% if level1.children > 0 %}
+            	<section class="cc menu-brands custom-arrow-brand">
+            		{% for level2 in level1.children %}
+            			<li id="id{{ level2.id }}">
+            				<a href="{{ level2.link }}" class="link-level2">
+            				    {% if level2.images %}
+                                    <img class="lazyload"data-sizes="auto" data-src="{{ level2.images[0] }}" alt="{{ level2.name }}">           
+                                {% endif %}
+                            	<!--{{ level2.name }}-->
+                            </a>
+            			</li>
+            		{% endfor %}
+            	</section>
+            	{% endif %}
+            {% endif %}
+        {% endif %}
+    {% endfor %} 
+</div>

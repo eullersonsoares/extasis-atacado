@@ -1,0 +1,6 @@
+{% if pages.current != 'login' %}
+    {% element 'snippets/tray_login' %}
+{% endif %}
+<a href="{{ links.orders }}" class="color-base-bg color-detail-bg-hover">Meus Pedidos</a>
+<a href="{{ links.login }}" class="color-base-bg color-detail-bg-hover">Login</a>
+<a href="{{ links.register }}" class="color-base-bg color-detail-bg-hover">Cadastre-se</a>

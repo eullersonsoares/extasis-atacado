@@ -1,0 +1,13 @@
+<!-- carousel -->
+<div class="display-carousel">
+    <div class="slides"> 
+        {% for product in products %}
+        <div class="slideItem" style="width: 256px; height: 500px; top: 54px; right: 34.6px; opacity: 1; z-index: 4; display: block;"> 
+        
+                {% element 'snippets/product-5' {"product": product} %}
+            
+        </div>
+        {% if loop.index is divisible by(16) %}{% endif %}
+        {% endfor %}
+    </div>
+</div>

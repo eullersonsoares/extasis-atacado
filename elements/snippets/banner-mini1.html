@@ -1,0 +1,73 @@
+<div class="container-custom banner banner-mini">
+    <div class="row">
+        <div class="col-sm-12 col-md-4 banner-mini1">
+            <!-- EXTRA 2 -->
+            {% if banners.extra2.slides %}
+                {% if pages.current == 'home' and banner.extra2 %}
+                    <div class="banners">
+                        <div class="banner-arrows advert-dots">
+                            {% for slide in banners.extra2.slides %}
+                                <a href="{{ slide.link }}" target="{{ slide.target }}">
+                                    <img class="lazyload" data-sizes="auto" data-src="{{ slide.image }}" alt="{{ slide.label }}">
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                <section class="banners">
+                    {% if banner.extra2 %}
+                        <a href="{{ banners.extra2.link }}" target="{{ banners.extra2.target }}" title="{{ banners.extra2.alt }}">
+                            <img class="lazyload" data-sizes="auto" data-src="{{ banners.extra2.src }}" alt="{{ banners.extra2.alt }}">
+                        </a>
+                    {% endif %}
+                </section>
+            {% endif %}
+            <!-- / EXTRA 2 -->
+        </div>
+        <div class="col-sm-12 col-md-4 banner-mini2">
+            <!-- EXTRA 3 -->
+            {% if banners.extra3.slides %}
+                {% if pages.current == 'home' and banner.extra3 %}
+                    <div class="banners">
+                        <div class="banner-arrows advert-dots">
+                            {% for slide in banners.extra3.slides %}
+                                <a href="{{ slide.link }}" target="{{ slide.target }}">
+                                    <img class="lazyload"data-sizes="auto" data-src="{{ slide.image }}" alt="{{ slide.label }}">
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                <section class="banners">
+                    {{ banner.extra3 }}
+                </section>
+            {% endif %}
+            <!-- / EXTRA 3 -->
+        </div>
+        <div class="col-sm-12 col-md-4 banner-mini3">
+            <!-- EXTRA 4 -->
+            {% if banners.extra4.slides %}
+                {% if pages.current == 'home' and banner.extra4 %}
+                    <div class="banners">
+                        <div class="banner-arrows advert-dots">
+                            {% for slide in banners.extra4.slides %}
+                                <a href="{{ slide.link }}" target="{{ slide.target }}">
+                                    <img class="lazyload"data-sizes="auto" data-src="{{ slide.image }}" alt="{{ slide.label }}">
+                                </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% else %}
+                <section class="banners">
+                    <a href="{{ banners.extra4.link }}" target="{{ banners.extra4.target }}" title="{{ banners.extra4.alt }}">
+                        <img class="lazyload" data-sizes="auto" data-src="{{ banners.extra4.src }}" alt="{{ banners.extra4.alt }}">
+                    </a>
+                </section>
+            {% endif %}
+            <!-- / EXTRA 4 -->
+        </div>
+    </div>
+</div>

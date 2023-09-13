@@ -1,0 +1,12 @@
+<!-- NEWSLETTER 5 -->
+<div class="newsletter5">
+    <div class="newsletterTitle"><P>CADASTRE-SE E TENHA ACESSO A NOVIDADES EM PRIMEIRA MÃO</P></div>
+    <div class="newsletterForm">
+        <form action="{{ links.newsletter }}" method="post" name="newsletter">
+            <input class="inputnews" type="hidden" name="loja"  value="{{ store.id }}">
+            <input class="inputnews" type="text"   name="name"  placeholder="Nome">
+            <input class="inputnews" type="email"  name="email" placeholder="E-mail">
+            <button class="btnNL">ASSINAR</button>
+        </form>
+    </div>
+</div>

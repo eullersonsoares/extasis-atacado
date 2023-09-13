@@ -1,0 +1,110 @@
+<header class="header8v2">
+    <div class="banda color-base-bg">
+        <div class="container-custom ">
+            <div class="row">
+                <div class="col-md-12 col-md-6 c-left middle">
+                    <div class="row">
+                        <div class="" itemscope itemtype="http://data-vocabulary.org/Organization">
+                            <div class="{{ settings.class_banda_txt }} inline-block">
+                                <a href="{{ links.orders }}" class="orders">
+                                    Login
+                                </a>
+                            </div>
+                            <div class="{{ settings.class_banda_txt }} inline-block">
+                                <a href="{{ links.account }}" class="account">
+                                    Cadastro
+                                </a>
+                            </div>
+                            <div class="{{ settings.class_banda_txt }} inline-block">
+                                <a href="{{ links.orders }}" class="orders">
+                                    Meus Pedidos
+                                </a>
+                            </div>
+                            <div class="{{ settings.class_banda_txt }} inline-block">
+                                <a href="{{ links.account }}" class="account">
+                                    Minha Conta
+                                </a>
+                            </div>
+                        </div> <!--/ pure-menu-horizontal -->
+                    </div>
+                </div>
+                <div class="col-md-12 col-md-6 c-right middle">
+                    <div class="row">
+                        <div class="" itemscope itemtype="http://data-vocabulary.org/Organization">
+                            <div class="item-tel inline-block" itemprop="tel">
+                                <i class="color-detail fa fa-phone" aria-hidden="true"></i>
+                                {{ Translation('ag_telefone_1') }}
+                            </div>
+                            <div class="item-whatsapp inline-block" itemprop="tel">
+                                {% if settings.radio_whatsapp == "sim" %}
+                                    {% if settings.whatsapp %}
+                                    <i class="color-detail fa fa-whatsapp" aria-hidden="true"></i>
+                                    {{ settings.whatsapp }} 
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            <div class="socialmedia inline-block">
+                                {% element 'snippets/social-list' %}
+                            </div>
+                            <div class="pure-menu-item app-cart inline-block">
+                                {% element 'snippets/app_cart' %}
+                            </div>
+                        </div> <!--/ pure-menu-horizontal -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {% if not utils.is_mobile %}
+    <div class="container-custom ">
+        <div class="row">
+            <div class="menu8v2">
+                
+                <div class="col-md-12 col-md-2">
+                    <div class="row">
+                        <div class="brand">
+                            {% if pages.current == 'home' %}
+                            <h1>
+                                <a data-tray-tst="logotipo_loja" href="{{ links.home }}" title="{{ store.name }}" class="logo-color">
+                                    {% set logo =  Image('logo') %}
+            
+            {{ logo | replace({"alt":"width='142px' height='62px' alt"}) }}
+                                </a>
+                            </h1>
+                            {% else %}
+                             <h2>
+                                <a data-tray-tst="logotipo_loja" href="{{ links.home }}" title="{{ store.name }}" class="logo-color">
+                                    {% set logo =  Image('logo') %}
+            
+            {{ logo | replace({"alt":"width='142px' height='62px' alt"}) }}
+                                </a>
+                            </h2>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-12 col-md-8">
+                    <div class="menu-position">
+                        <div class="row">
+                            <div class="menu-content">
+                                {% element 'snippets/menu' %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-md-12 col-md-2 app-search">
+                    <div class="row">
+                        {% element 'snippets/search' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+{% endif %}
+   
+</header>
+

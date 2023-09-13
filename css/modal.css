@@ -1,0 +1,83 @@
+.modal-mask {
+    position: fixed;
+    z-index: 9998;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: table;
+    transition: opacity 0.3s ease;
+  }
+  
+  .modal-wrapper {
+    display: table-cell;
+    vertical-align: middle;
+  }
+  
+  .vue-modal-close {
+    font-size: 2.5rem;
+    float: right;
+    color: #969696;
+    cursor: pointer;
+  }
+  
+  .vue-modal-container {
+    width: 40%;
+    margin: 0px auto;
+    background-color: #fff;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.33);
+    transition: all 0.3s ease;
+    font-family: Helvetica, Arial, sans-serif;
+  }
+  
+  .vue-modal-header {
+    border-bottom: 0;
+    text-align: center;
+    padding: 15px;
+  }
+  .vue-modal-header h3 {
+    margin-top: 15px;
+    font-size: 3.5rem;
+    font-weight: 700;
+  }
+  
+  .vue-modal-body {
+    margin: 20px 0;
+    padding: 0 10% 9%;
+    text-align: center;
+  }
+  .vue-modal-body input {
+    width: 71%;
+    height: 35px;
+    padding: 10px;
+    margin: 2%;
+    border-bottom: 1px solid gray;
+  }
+  
+  .vue-modal-body button {
+    width: 71%;
+    height: 35px;
+    padding: 10px;
+    background-color: #000;
+    border: 0;
+    color: #fff;
+    font-size: 1rem;
+    margin: 2%;
+  }
+  
+  @media screen and (max-width: 768px) {
+    .vue-modal-container {
+      width: 90%;
+    }
+  
+    .vue-modal-body {
+      padding: 0 0 10%;
+    }
+  
+    .vue-modal-body input {
+      width: 70%;
+    }
+  }
+  

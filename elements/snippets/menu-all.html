@@ -1,0 +1,23 @@
+<section>
+{% for taxo in categories %}
+    {% if loop.index <= limit or not limit %}
+        <div class="item-menu">
+            <h4 class="option-allmenu">
+                <a href="{{ taxo.link }}" class="color-detail link-alltaxo">{{ taxo.name }}</a>
+            </h4>
+            {% if taxo.children > 0 %}
+            <div class="menu-sub">
+                {% for taxo_heir in taxo.children %}
+                    <div class="menu-item-heir">
+                        <h4>
+                            <a href="{{ taxo_heir.link }}" class="link-menu-heir">{{ taxo_heir.name }}</a>
+                        </h4>
+                    </div><!--/ menu-item-heir -->
+                {% endfor %}
+            </div><!--/ menu-sub -->
+            {% endif %}
+            
+        </div><!--/ item-menu -->
+    {% endif %}
+{% endfor %}
+</section>

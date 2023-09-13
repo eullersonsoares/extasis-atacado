@@ -1,0 +1,13 @@
+<div class="clearfix">
+{% for product in products %}
+<div class="col-xs-6 col-sm-6 col-md-6">
+
+    {% element 'snippets/product' {"product": product} %}
+    
+</div>
+    {% if loop.index is divisible by(2) %}
+</div>
+<div class="clearfix">
+{% endif %}
+{% endfor %}
+</div>

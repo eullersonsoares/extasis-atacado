@@ -1,0 +1,69 @@
+<section id="ContactContent">
+    <div class="container3">
+    <div class="container2">
+    <p style="text-align: center;">&nbsp;</p>
+    
+    <div class="board">
+    <p style="text-align: center;"><span style="font-size:28px;">Fale Conosco!</span></p>
+    
+    <p>&nbsp;</p>
+    </div>
+    </div>
+    </div>
+    
+    <div class="container3">
+    <div class="container2">
+    
+    <div class="topBorder">
+    <div class="leftCorner" style="text-align: center;">&nbsp;</div>
+    </div>
+    
+    <div class="container2">
+    <div class="board">
+    <form action="https://formspree.io/f/myybkpll" method="POST" class="formulario-contato" id="form1" method="post" name="form1" >
+    <div class="half">
+        <div class="boxInputContact">
+            <div class="labelContato">Nome<sup>*</sup>:</div>
+            <input required class="text block obriga" id="nome" maxlength="200" name="nome" onfocus="limpaDiv(&quot;div_erro&quot;);" onkeypress="volta_input(this.id)" size="50" type="text" />
+        </div>
+        <div class="boxInputContact">
+            <div class="labelContato" style="width: 60px;">E-mail<sup>*</sup>:</div>
+            <input required class="text obriga" id="email" maxlength="100" name="email" onfocus="limpaDiv(&quot;div_erro&quot;);" onkeypress="volta_input(this.id)" size="50" type="email" /> <label class="block"></label>
+        </div>
+    </div>
+    <div class="half">
+
+        <div class="boxInputContact">
+            <div class="labelContato">Telefone:</div>
+            <input required class="text opcional" id="telefone" maxlength="14" name="telefone" onkeypress="mascara(this,telefoneloja,event)" size="20" type="tel" />
+        </div>
+        <div class="boxInputContact">
+            <div class="labelContato" style="margin-right: 5px;">Assunto:</div>
+            <select required name="assunto" id="assunto" style="border:0">
+                <option value="Sugestï¿½o ou reclamaï¿½ï¿½o">Sugestï¿½o ou reclamaï¿½ï¿½o</option>
+                <option value="Parcerias e propostas comerciais">Parcerias e propostas comerciais</option>
+                <option value="Dï¿½vidas sobre pedido, pagamento ou prazo de entrega">Dï¿½vidas sobre pedido, pagamento ou prazo de entrega</option>
+                <option value="Cancelamento de pedido">Cancelamento de pedido</option>
+                <option value="Trabalhe na Extasis">Trabalhe na Extasis</option>
+                <option value="Outro">Outro</option>
+            </select>
+        </div>
+    </div>
+    
+    
+
+    <div class="boxInputContact mensagem">
+    <div class="labelContato">Mensagem<sup>*</sup>:</div>
+    <span class="obriga table" id="spanTextarea"><textarea required class="textarea obriga" cols="50" id="mensagem" name="mensagem" onfocus="limpaDiv(&quot;div_erro&quot;);" onkeypress="volta_textarea(this.id)" rows="5"> </textarea></span></div>
+    
+    <!-- <div class="box-captcha">&nbsp;</div> -->
+    
+    <button id="test-btn" style="width: 255px;height: 42px;left: 275px;top: 1585px;background: #000000;color:white;border:0;align-self: baseline;    margin-bottom: 40px;">Enviar</button>
+    <p id="my-form-status"></p>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+</section>
+    

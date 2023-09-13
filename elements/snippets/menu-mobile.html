@@ -1,0 +1,33 @@
+<div class="menu-mobile">
+                            
+    <label class="dispenser" for="controlTaxo">
+        <div class="wsymbol">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+        </div>
+    </label>
+    
+    <!-- @device interative css for navegation taxo mobile -->
+    <input type="checkbox" id="controlTaxo">
+    <label for="controlTaxo" class="show-taxo"></label>
+    <label for="controlTaxo" class="close-taxo"></label>
+    <!--/ @device interative css for navegation taxo mobile -->
+    
+    <section class="color-base-bg">
+        <div class="item-taxo menu-inst-mobile">
+        		<li><a href="{{ links.company }}">Quem Somos</a></li>
+        		<li><a href="{{ links.account }}">Minha Conta</a></li>
+                <li><a href="{{ links.register }}">Cadastre-se</a></li>
+                <li><a href="{{ links.orders }}">Meus pedidos</a></li>
+        </div>
+        {% for taxo in categories %}
+	        {% if loop.index <= limit or not limit %}
+	            <div class="item-taxo">
+	            	<h4 class="option-alltaxo">
+	            		<a href="{{ taxo.link }}" class="link-alltaxo">{{ taxo.name }}</a>
+	            	</h4>
+	            </div>
+	        {% endif %}
+	    {% endfor %}
+    </section>
+
+</div>

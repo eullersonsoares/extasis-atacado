@@ -1,0 +1,20 @@
+{#
+# Este breadcrumb exibe a pï¿½gina em que o usï¿½ario se encontra,
+# mesmo estando no primeiro nï¿½ï¿½vel da categoria o caminho serï¿½ exibido.
+# elements/snippets/breadcrumb.html
+#}
+
+<div class="breadcrumb">
+  <span class="breadcrumb-text">
+    <!--Vocï¿½ estï¿½ em:-->
+  </span>
+  <span class="breadcrumb-item"><a href="/">Pï¿½gina inicial</a></span>
+  <span class="icon-breadcrumb">|</span>
+  {% if breadcrumb %}
+    {% for item in breadcrumb %}
+      <span class="breadcrumb-item"><a class="breadcrumb_text"href="{{ item.link}}" title="{{ item.name }}">{{ item.name }}</a></span>
+      <span class="icon-breadcrumb">|</span>
+    {% endfor %}
+    <span class="breadcrumb-item" style="color:#bdbdbd">{{ pages.current == 'product' ? product.name : category.name }}</span>
+  {% endif %}
+</div>

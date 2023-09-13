@@ -1,0 +1,381 @@
+
+{% set limitProducts = settings.quantproduct %}
+{% set showAvailable = settings.show_available_products ? 'available' %}
+
+<!--FULLBANNER-->
+{% if not utils.is_mobile %}
+    {% element 'snippets/banner-full' %}
+{% else %}
+    {% if settings.enable_banner_full == "sim" %}
+        {% element 'snippets/banner-full' %}
+    {% endif %}
+{% endif %}
+
+{% element 'snippets/diferenciais' %}
+
+<!--BANNER Rï¿½GUA-->
+<!--{% if not utils.is_mobile %}
+<div class="diferenciais">
+    {% if banner.extra1 %}
+        <a href="{{ banners.extra1.link }}" target="{{ banners.extra1.target }}" title="{{ banners.extra1.alt }}">
+            <img class="lazyload" data-sizes="auto" data-src="{{ banners.extra1.src }}" alt="{{ banners.extra1.alt }}">
+        </a>
+    {% endif %}
+</div>
+{% endif %}-->
+
+{% if utils.is_mobile %}
+<!--BANNER EXTRA 8 MOBILE-->
+    {% if banner.extra8 %}
+        <a href="{{ banners.extra8.link }}" target="{{ banners.extra8.target }}" title="{{ banners.extra8.alt }}">
+            <img class="lazyload" data-sizes="auto" data-src="{{ banners.extra8.src }}" alt="{{ banners.extra8.alt }}">
+        </a>
+    {% endif %}
+{% endif %}
+
+
+{% if settings.vitrine_novidades %}
+    <!-- LANï¿½AMENTOS E NOVIDADES -->
+    {% if showAvailable %}
+        {% set novidades = Products({
+            'filter': ['new', showAvailable],
+            'limit': limitProducts,
+            'order': "rand"
+        }) %}
+    {% else %}
+        {% set novidades = Products({
+            'filter': 'new',
+            'limit': limitProducts,
+            'order': "rand"
+        }) %}
+    {% endif %}
+    
+    {% if novidades|length > 0 %}
+    <div class="container-custom display-slider display-offer novidades">
+        <!--TITLE 2-->
+        <div class="row title2">
+            <div class="col-sm-12 title-display">
+                <h2 class="color-base label-display">{{ settings.nome_sessao_novidades }}</h2>
+                <!-- <p>{{ settings.frase_novidades }}</p> -->
+            </div>
+        </div>
+        <!--DISPLAY-->
+        <div class="row alt">
+        {% if settings.vitrine_novidades_tipo == "listagem" %}
+            {% element 'snippets/display' {
+                "showcaseTitle": "Produtos em Lanï¿½amento",
+                "products": novidades
+            } %}
+        {% elseif settings.vitrine_novidades_tipo == "carrossel" %}
+            {% element 'snippets/display-slider' {
+                "showcaseTitle": "Produtos em Lanï¿½amento",
+                "products": novidades
+            } %}
+        {% endif %}
+    </div>
+    </div><!--/ display -->
+    {% endif %}
+{% endif %}
+
+<div class="container-custom secao2_banners">
+    {% if banner.extra2 %}
+        <a href="{{ banners.extra2.link }}" target="{{ banners.extra2.target }}" title="{{ banners.extra2.alt }}">
+            <img class="lazyload" data-sizes="auto" data-src="{{ banners.extra2.src }}" alt="{{ banners.extra2.alt }}" width="344.078px" height="348.516px">
+        </a>
+    {% endif %}
+    {% if banner.extra3 %}
+        <a href="{{ banners.extra3.link }}" target="{{ banners.extra3.target }}" title="{{ banners.extra3.alt }}">
+            <img class="lazyload" data-sizes="auto" data-src="{{ banners.extra3.src }}" alt="{{ banners.extra3.alt }}" width="344.078px" height="348.516px">
+        </a>
+    {% endif %}
+</div>
+
+
+{% set terceira = Products({
+    'categories':'117',
+    'limit': limitProducts,
+    'order': "rand"
+}) %}
+<div class="container-custom display-slider display-offer novidades">
+    <!--TITLE 2-->
+    <!--<div class="row title2">
+        <div class="col-sm-12 title-display">
+            <h2 class="color-base label-display">NOVIDADES</h2>
+        </div>
+    </div>-->
+    <!--DISPLAY-->
+    <div class="row alt">
+    {% if settings.vitrine_novidades_tipo == "listagem" %}
+        {% element 'snippets/display' {
+            "showcaseTitle": "Produtos em Lanï¿½amento",
+            "products": terceira
+        } %}
+    {% elseif settings.vitrine_novidades_tipo == "carrossel" %}
+        {% element 'snippets/display-slider' {
+            "showcaseTitle": "Produtos em Lanï¿½amento",
+            "products": terceira
+        } %}
+    {% endif %}
+    </div>
+</div>
+<style>
+    /*3 banners e vitrine de produtos - Home*/
+    .container-custom.secao2_banners {
+        display: grid !important;
+        gap: 30px !important;
+        margin-top: -3% !important;
+        grid-template-columns: 1fr 1fr!important;
+    }
+
+    .container-custom.secao2_banners img {
+        width: 100%;
+    }
+
+    /*2 banners e vitrine - Home*/
+    .container-custom.banner.banner-mini.new {
+        display: grid !important;
+        gap: 30px !important;
+        margin-top: -3% !important;
+        grid-template-columns: 2.09fr 1fr !important;
+    }
+    .container-custom.display-slider.display-offer.destaques .col-sm-3 {
+        height: 545px !important;
+    }
+    @media(max-width:767px){
+    .container-custom.secao2_banners{
+        margin-top: 0px!important;
+        display: flex!important;
+        flex-direction: column!important;
+        gap: 15px !important;
+        grid-template-columns: 1fr 1fr 1fr;
+        padding-bottom: 30px!important;
+    }
+    }
+</style>
+
+
+<!--MINI BANNERS-->
+{% if not utils.is_mobile and banners.extra2 %}
+</div>{% element 'snippets/banner-mini1-new' %}</div>
+{% else %}
+    {% if settings.enable_banner_minis == "sim" and banners.extra2 %}
+    </div>{% element 'snippets/banner-mini1' %}</div>
+    {% endif %}
+{% endif %}
+
+{% if settings.vitrine_destaques %}
+    <!-- DESTAQUES -->
+    {% if showAvailable %}
+        {% set destaques = Products({
+            'filter': ['featured', showAvailable],
+            "order": "rand"
+        }) %}
+    {% else %}
+        {% set destaques = Products({
+            'filter': 'featured',
+            "order": "rand"
+        }) %}
+    {% endif %}
+    
+    {% if destaques|length > 0 %}
+    <div class="container-custom display-slider display-offer destaques">
+        <!--TITLE 2-->
+        <div class="row title2">
+            <div class="col-sm-12 title-display">
+                <h2 class="color-base label-display">{{ settings.nome_sessao_destaques }}</h2>
+                <!-- <p>{{ settings.frase_destaques }}</p> -->
+            </div>
+        </div>
+        <!--DISPLAY-->
+        <div class="container_listagem">
+        <div class="row alt">
+        {% if settings.vitrine_destaques_tipo == "listagem" %}
+            {% if not utils.is_mobile %}
+                {% element 'snippets/display' {
+                    "showcaseTitle": "Produtos em Destaque",
+                    "products": destaques
+                } %}
+            {% else %}
+                {% element 'snippets/display-2col' {
+                    "showcaseTitle": "Produtos em Destaque",
+                    "products": destaques
+                } %}
+            {% endif %}
+        {% elseif settings.vitrine_destaques_tipo == "carrossel" %}
+            {% element 'snippets/display-slider' {
+                "showcaseTitle": "Produtos em Destaque",
+                "products": destaques
+            } %}
+        {% endif %}
+    </div> 
+    <!--<div class="carregarMais" onclick="carregarMais()">carregar mais produtos</div>  -->
+    </div>
+    </div><!--/ display -->
+    {% endif %}
+{% endif %}
+
+<div class="box-cookies esconder">
+    <p class="msg-cookies">Usamos cookies para melhorar sua experi&ecirc;ncia em nosso site. Ao continuar, voc&ecirc; concorda com nossa pol&iacute;tica de <a style="color:#fff; text-decoration: underline;" href="/privacidadeeseguranca">Privacidade e Seguran&ccedil;a.</a></p>
+    <button class="btn-cookies">ENTENDI</button>
+   </div>
+
+
+<script type="text/javascript" async>
+(()=>{localStorage.pureJavaScriptCookies||document.querySelector(".box-cookies").classList.remove("esconder");document.querySelector(".btn-cookies").addEventListener("click",(()=>{document.querySelector(".box-cookies").classList.add("esconder"),localStorage.setItem("pureJavaScriptCookies","accept")}))})();
+</script>
+
+
+<!--MINI BANNERS-->
+{% if not utils.is_mobile and banners.extra5 %}
+    <div>{% element 'snippets/banner-mini2' %}</div>
+{% else %}
+    {% if settings.enable_banner_minis == "sim" and banners.extra2 %}
+        <div>{% element 'snippets/banner-mini2' %}</div>
+    {% endif %}
+{% endif %}
+
+{% if settings.vitrine_promocao %}
+    <!-- PRODUTOS EM OFERTA -->
+    {% if showAvailable %}
+        {% set promocao = Products({
+            "filter": ['promotion', showAvailable],
+            "limit": limitProducts,
+            "order": "rand"
+        }) %}
+    {% else %}
+        {% set promocao = Products({
+            "filter": "promotion",
+            "limit": limitProducts,
+            "order": "rand"
+        }) %}
+    {% endif %}
+    
+    {% if promocao|length > 0 %}
+    <div class="container-custom display-slider display-offer">
+        <!--TITLE 2-->
+        <div class="row title2">
+            <div class="col-sm-12 title-display">
+                <h2 class="color-base label-display">{{ settings.nome_sessao_promocao }}</h2>
+                <!-- <p>{{ settings.frase_promocao }}</p> -->
+            </div>
+        </div>
+        <!--DISPLAY-->
+        <div class="row">
+        {% if settings.vitrine_promocao_tipo == "listagem" %}
+            {% element 'snippets/display' {
+               "showcaseTitle": "Produtos em Ofertas",
+               "products": promocao
+            } %}
+        {% elseif settings.vitrine_promocao_tipo == "carrossel" %}
+            {% element 'snippets/display-slider' {
+               "showcaseTitle": "Produtos em Ofertas",
+               "products": promocao
+            } %}
+        {% endif %}
+    </div>
+    </div><!--/ display -->
+    {% endif %}
+{% endif %}
+
+
+
+
+{% if settings.vitrine_maisvendidos %}
+    <!-- MAIS VENDIDOS -->
+    {% if showAvailable %}
+        {% set maisvendidos = Products({
+            'filter': ['featured', showAvailable],
+            'limit': limitProducts,
+            'order': {'quantity_sold': 'desc'}
+        }) %}
+    {% else %}
+        {% set maisvendidos = Products({
+            'filter': 'featured',
+            'limit': limitProducts,
+            'order': {'quantity_sold': 'desc'}
+        }) %}
+    {% endif %}
+    
+    {% if maisvendidos|length > 0 %}
+    <div class="container-custom display-slider display-offer">
+        <!--TITLE 2-->
+        <div class="row title2">
+            <div class="col-sm-12 title-display">
+                <h2 class="color-base label-display">{{ settings.nome_sessao_maisvendidos }}</h2>
+                <!-- <p>{{ settings.frase_maisvendidos }}</p> -->
+            </div>
+        </div>
+        <!--DISPLAY-->
+        <div class="row">
+        {% if settings.vitrine_maisvendidos_tipo == "listagem" %}
+            {% element 'snippets/display' {
+                "showcaseTitle": "Mais Vendidos",
+                "products": maisvendidos
+            } %}
+        {% elseif settings.vitrine_maisvendidos_tipo == "carrossel" %}
+            {% element 'snippets/display-slider' {
+                "showcaseTitle": "Mais Vendidos",
+                "products": maisvendidos
+            } %}
+        {% endif %}
+        
+    </div>
+    </div>
+    {% endif %}
+{% endif %}
+    
+<!-- DEPOIMENTO -->
+{% if settings.exibir_depoimentos == "sim" %}
+<div class="container-custom testimony">
+    <div class="title2">
+        <div class="col-sm-12 title-display">
+            <h2 class="color-base label-display">{{ settings.nome_sessao_depoimentos }}</h2>
+            <!-- <p>{{ settings.frase_depoimentos }}</p> -->
+        </div>
+    </div>
+    {% element 'snippets/depoimentos' %}
+</div>
+{% endif %}
+
+<!-- NOTï¿½CIAS -->
+{% if settings.exibir_noticias == "sim" %}
+<div class="news-home">
+    <div class="title2">
+        <div class="col-sm-12 title-display">
+            <h2 class="color-base label-display">{{ settings.nome_sessao_noticias }}</h2>
+            <!-- <p>{{ settings.frase_noticias }}</p> -->
+        </div>
+    </div>
+    <div class="container-custom">
+        {% element 'snippets/noticias' %}
+    </div>
+</div>
+{% endif %}
+
+<!--BANNER RODAPï¿½-->
+{% if pages.current == 'home' %}
+
+    {% if banner.bottom %}
+    <span class="bg-bannerfooter">
+        <div class="container-custom" style="width: 100%!important;">
+            <div class="banners banner-footer">
+                {% if banner.bottom %}
+                    <a href="{{ banners.bottom.link }}" target="{{ banners.bottom.target }}" title="{{ banners.bottom.alt }}">
+                        <img class="lazyload" data-sizes="auto" data-src="{{ banners.bottom.src }}" alt="{{ banners.bottom.alt }}">
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+    </span>
+    {% endif %}
+{% endif %}
+
+
+    
+
+
+
+
+
+
+<!-- LightWidget WIDGET -->

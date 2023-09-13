@@ -1,0 +1,39 @@
+<header class="header-fixed head-fixed">
+    <div class="cont-decorate">
+        <div class="container-custom">
+            <div class="row">
+                <div class="col-sm-12 col-md-2 c-center">
+                    <div class="brand">
+                        <a data-tray-tst="logotipo_loja" href="{{ links.home }}" title="{{ store.name }}" class="logo-color">
+                            {% set logo =  Image('logo') %}
+            
+            {{ logo | replace({"alt":"width='142px' height='62px' alt"}) }}
+                        </a>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-1 c-center">
+                    <!-- MENU -->
+                </div>
+                <div class="col-sm-12 col-md-7 c-left app-search">
+                    <div class="row">
+                        {% element 'snippets/search-fixed' %}
+                    </div>
+                </div> 
+                <div class="col-sm-12 col-md-2 c-right app-cart">
+                    <div class="row">
+                        {% element 'snippets/app-cart-fixed' %}
+                    </div>
+                </div>
+                
+                <!-- MENU -->
+                <div class="taxobar-fixed">
+                    <div class="taxo-position">
+                        {% element 'snippets/menu-fixed' %}
+                    </div>
+                </div>
+                    
+                    
+            </div>
+        </div>
+    </div>
+</header>

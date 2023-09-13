@@ -1,0 +1,54 @@
+{% if settings.facebook or 
+  settings.twitter or 
+  settings.pinterest or 
+  settings.youtube or 
+  settings.instagram
+%}
+<ul class="socialmedia">
+    {% if settings.radio_facebook == "sim" %}
+        {% if settings.facebook %}
+        <li class="inline-block facebook">
+            <a href="https://www.facebook.com/{{ settings.facebook }}" target="_blank">
+                <i class="color-detail fa fa-facebook" aria-hidden="true"></i>
+            </a>
+        </li>
+        {% endif %}
+    {% endif %}
+    {% if settings.radio_twitter == "sim" %}
+        {% if settings.twitter %}
+        <li class="inline-block twitter">
+            <a href="https://www.twitter.com/{{ settings.twitter }}" target="_blank">
+                <i class="color-detail fa fa-twitter" aria-hidden="true"></i>
+            </a>
+        </li>
+        {% endif %}
+    {% endif %}
+    {% if settings.radio_youtube == "sim" %}
+        {% if settings.youtube %}
+        <li class="inline-block youtube">
+            <a href="https://www.youtube.com/{{ settings.youtube }}" target="_blank">
+                <i class="color-detail fa fa-youtube-play" aria-hidden="true"></i>
+            </a>
+        </li>
+        {% endif %}
+    {% endif %}
+    {% if settings.radio_instagram == "sim" %}
+        {% if settings.instagram %}
+        <li class="inline-block instagram">
+            <a href="https://www.instagram.com/{{ settings.instagram }}" target="_blank">
+                <i class="color-detail fa fa-instagram" aria-hidden="true"></i>
+            </a>
+        </li>
+        {% endif %}
+    {% endif %}
+    {% if settings.radio_pinterest == "sim" %}
+        {% if settings.pinterest %}
+        <li class="inline-block pinterest">
+            <a href="https://br.pinterest.com/{{ settings.pinterest }}" target="_blank">
+                <i class="color-detail fa fa-pinterest" aria-hidden="true"></i>
+            </a>
+        </li>
+        {% endif %}
+    {% endif %}
+</ul>
+{% endif %}

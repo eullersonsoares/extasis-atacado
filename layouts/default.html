@@ -1,0 +1,282 @@
+{% spaceless %}
+<!doctype html>
+<html lang="pt-br" data-theme="{{ settings.extension_id }}" data-store="{{ store.id }}"
+    class="page-{{ pages.current }}">
+
+<head>
+    {{ html.charset() }}
+    <meta http-equiv="X-UA-Compatible" content="IE=11">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="facebook-domain-verification" content="y14r0zpiz2pz64m5jb98ar6amoxxie" />
+    <div style="display: none;">
+    {{ tray.meta }}
+    </div>
+    {{ tray.styles }}
+    
+    <link rel="stylesheet" href="{{ asset('css/theme.min.css') }}" type="text/css" async>
+    <link rel="stylesheet" href="{{ asset('css/custom.css', {dynamic: true}) }}" type="text/css" async>
+    <link rel="stylesheet" href="{{ asset('css/custom.dev.css', {dynamic: true}) }}" type="text/css" async>
+    
+    {{ tray.analytics }}
+
+    {% if settings.exibir_googletagmanager == "sim" %}
+    <!-- google tag manager -->
+    {{ googleTagManager.header(pages.current, tagManagerData) }}
+    {% endif %}
+
+    <!--{% if settings.radio_facebook == "sim" %}
+    <div id="fb-root"></div>
+    <script async>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/pt_BR/sdk.js#xfbml=1&version=v2.4";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    {% endif %}-->
+
+</head>
+
+<body>
+
+    <!-- Topo do cï¿½digo -->
+    <!-- Google Tag Manager (noscript) -->
+        <noscript>
+            <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MPGPPHL" height="0" width="0" style="display:none;visibility:hidden"></iframe>
+        </noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    {% if settings.exibir_googletagmanager == "sim" %}
+        {{ googleTagManager.top(pages.current, tagManagerData) }}
+    {% endif %}
+    
+    <div class="tray-messages">
+        {% element 'snippets/messages' %}
+    </div>
+
+    <!-- HEADER -->
+    <header class="header-mobile-ipad clearfix">
+        {% element 'header_mobile2' %}
+    </header>
+    
+    {% if not utils.is_mobile %}
+        {% if settings.structure_header == "header1" %}
+            {% element 'header1' %}
+        {% elseif settings.structure_header == "header2" %}
+            {% element 'header2' %}
+        {% elseif settings.structure_header == "header3" %}
+            {% element 'header3' %}
+        {% endif %}
+    {% else %}
+        <header class="header-mobile clearfix">
+            {% element 'header_mobile2' %}
+        </header>
+    {% endif %}
+
+    <!--HEADER FIXED-->
+    {% if not utils.is_mobile and false %}
+        {% element 'header-fixed-2' %}
+    {% endif %}
+
+
+    {% if  pages.current not in  ['catalog','home','product','search'] %}
+    <section class="banners banner-interna">
+        {% if pages.current == 'sejaumarevendedora' %}
+            {% if not utils.is_mobile %}
+                {{ banner.side }}
+            {% else %}
+            <a href="{{ banners.popup.link }}">
+                <img src="{{ banners.popup.src }}" alt="{{ banners.popup.alt }}">
+            </a>
+            {% endif %}
+        {% else %}
+            {{ banner.extra12 }}
+        {% endif %}
+    </section>
+    {% endif %}
+
+    <!--CONTEUDO-->
+    {% if pages.current == 'home' %}
+        <!-- HOME -->
+        <div class="container-full">
+            {% if "central" in pages.current %}
+                {%  element 'sidebar-central' %}
+            {% endif %}
+            <section class="{{ 'central' in pages.current ? 'col-sm-9' : '' }}">
+                {{ content_for_layout }}
+            </section>
+        </div>
+    {% else %}
+        <div class="container-custom">
+            {% if "central" in pages.current %}
+                {%  element 'sidebar-central' %}
+            {% endif %}
+            <section class="{{ 'central' in pages.current ? 'col-sm-9' : '' }}">
+                {{ content_for_layout }}
+            </section>
+        </div>
+    {% endif %}
+
+
+
+    {# {% element 'snippets/tagcloud' %} #}
+
+    {% if pages.current in ['product','catalog','search'] %}
+        {% element 'snippets/products-visited' %}
+    {% endif %}
+
+    {% if  pages.current in ['sejaumarevendedora','faleconosco'] %}
+        {% if pages.current == 'sejaumarevendedora' %}
+            {% element 'form-revendedora' %}
+            <div id="contato_loja_container" style="margin-bottom:40px">
+                <div>
+                    <ul id="contato_loja">
+                        <li>CONTATO</li>
+                        <li>Whatsapp: {{ settings.whatsapp }} </li>
+                        <!-- <li>Telefone: {{ seggings.SAC}}</li> -->
+                        <li>Telefone: (85) 3262-0363</li>
+                        <li>E-mail: sac@extasis.com.br</li>
+                    </ul>
+                </div>
+                <div>
+                    <ul id="showroom">
+                        <li>SHOWROOM</li>
+                        <li>Av. Engenheiro Alberto S&aacute;, 540</li>
+                        <li>Papicu CEP 60.155-390</li>
+                        <li>Fortaleza, CE - Brasil</li>
+                    </ul>
+                </div>
+            </div>
+        {% else %}
+            {% element 'form-fale' %}
+        {% endif %}
+        <script>
+            window.addEventListener("DOMContentLoaded", function () {
+
+                // get the form elements defined in your form HTML above
+
+                var form = document.getElementById("form1");
+                var button = document.getElementById("test-btn");
+                var status = document.getElementById("my-form-status");
+
+                // Success and Error functions for after the form is submitted
+
+                function success() {
+                    form.reset();
+                    button.style = "display: none ";
+                    status.innerHTML = "E-mail enviado com sucesso! Em breve, entraremos em contato.";
+                }
+
+                function error() {
+                    status.innerHTML = "Erro ao enviar o email. Verifique os campos";
+                }
+
+                // handle the form submission event
+
+                form.addEventListener("submit", function (ev) {
+                    ev.preventDefault();
+                    var data = new FormData(form);
+                    ajax(form.method, form.action, data, success, error);
+                });
+            });
+
+            // helper function for sending an AJAX request
+
+            function ajax(method, url, data, success, error) {
+                // var xhr = new XMLHttpRequest();
+                // xhr.open(method, url);
+                // xhr.setRequestHeader("Accept", "application/json");
+                // xhr.onreadystatechange = function () {
+                //     if (xhr.readyState !== XMLHttpRequest.DONE) return;
+                //     if (xhr.status === 200) {
+                //         success(xhr.response, xhr.responseType);
+                //     } else {
+                //         error(xhr.status, xhr.response, xhr.responseType);
+                //     }
+                // };
+                // xhr.send(data);
+
+                fetch(url, {    method: method,    headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams(Object.fromEntries(jQuery('#form1').serializeArray().map(item => [item.name, item.value])))}).then(success())
+            }
+
+        </script>
+    {% endif %}
+
+    {% if pages.current in ['catalog','product','search', 'sejaumarevendedora', 'faleconosco'] %}
+        <div class="bannerFooter2" style="margin-bottom: 3px;">
+            {{ banner.extra11 }} 
+        </div>
+    {% endif %}
+
+    {% if settings.insta_display == "sim" %}
+        {% if  pages.current in [ 'nossaslojas','home', 'amarca', 'ajudaesuporte', 'perguntasfrequentes', 'politicadeentrega','privacidadeeseguranca','trocasedevolucoes'] %}
+            {% if settings.widget_insta %}
+                <div id='insta_container'>
+                    <div class="title2 usuario_insta">
+                        <div class="col-sm-12 title-display">
+                            <h2 class="label-display">{{ settings.instagram }}</h2>
+                            <!-- <p>{{ settings.frase_depoimentos }}</p> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="script_insta">{{ settings.widget_insta }}</div>
+            </div>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+
+    {% if utils.is_mobile %}
+        {% if settings.exibir_newsletter_footer_mobile == "sim" %}
+            {% element 'snippets/newsletter' %}
+        {% endif %}
+    {% else %}
+        {% if settings.exibir_newsletter_footer == "sim" %}
+            {% element 'snippets/newsletter' %}
+        {% endif %}
+    {% endif %}
+
+    {% element 'footer' %}
+
+    {% if settings.enable_icon_whatsapp == "sim" %}
+    <div id="icone-whatsapp"
+        style="position:fixed; display :flex; padding-right:40px; flex-direction: row-reverse; bottom:60px; width: 100%;">
+        <a href="https://api.whatsapp.com/send?phone=55{{ settings.whatsapp|replace({'(': '', ')': '', '-': '', ' ': ''}) }}"
+            target="_blank" title="Whatsapp" rel="noopener">
+            <svg xmlns="http://www.w3.org/2000/svg" width="174" height="33" viewBox="0 0 174 33" fill="none">
+                <rect width="174" height="33" rx="16.5" fill="black" />
+                <path
+                    d="M36.304 9.64553C34.6205 8.00064 32.3786 7.09595 29.996 7.09595C25.0781 7.09595 21.0763 10.9967 21.0763 15.7904C21.0763 17.3217 21.4862 18.8178 22.2656 20.1376L21 24.6415L25.729 23.4313C27.0308 24.1245 28.4973 24.4887 29.992 24.4887H29.996C34.9098 24.4887 39 20.588 39 15.7943C39 13.4719 37.9875 11.2904 36.304 9.64553ZM29.996 23.024C28.6621 23.024 27.3562 22.6754 26.2192 22.0175L25.95 21.8608L23.1455 22.5775L23.8929 19.9105L23.7161 19.6363C22.9728 18.4849 22.583 17.1572 22.583 15.7904C22.583 11.8074 25.9098 8.5646 30 8.5646C31.9808 8.5646 33.8411 9.31655 35.2393 10.6834C36.6375 12.0502 37.4973 13.8635 37.4933 15.7943C37.4933 19.7812 34.0821 23.024 29.996 23.024ZM34.0621 17.6115C33.8411 17.5019 32.7442 16.9771 32.5393 16.9066C32.3344 16.8322 32.1857 16.7969 32.0371 17.0162C31.8884 17.2355 31.4625 17.7212 31.3299 17.87C31.2013 18.0149 31.0688 18.0345 30.8478 17.9248C29.5379 17.2865 28.6781 16.7852 27.8143 15.34C27.5853 14.9562 28.0433 14.9836 28.4692 14.1533C28.5415 14.0084 28.5054 13.8831 28.4491 13.7734C28.3929 13.6638 27.9469 12.5946 27.7621 12.1599C27.5812 11.7369 27.3964 11.7956 27.2598 11.7878C27.1312 11.78 26.9826 11.78 26.8339 11.78C26.6853 11.78 26.4442 11.8348 26.2393 12.0502C26.0344 12.2695 25.4598 12.7943 25.4598 13.8635C25.4598 14.9327 26.2594 15.9666 26.3679 16.1115C26.4804 16.2564 27.9388 18.4496 30.1768 19.3935C31.5911 19.9888 32.1455 20.0397 32.8527 19.9379C33.2826 19.8752 34.1705 19.4131 34.3554 18.9039C34.5402 18.3948 34.5402 17.9601 34.4839 17.87C34.4317 17.7721 34.283 17.7173 34.0621 17.6115Z"
+                    fill="white" />
+                <path
+                    d="M52.776 11.27V12.572H48.646V15.442H51.866V16.744H48.646V21H47.05V11.27H52.776ZM60.1211 19.012H56.0471L55.3471 21H53.6811L57.1671 11.256H59.0151L62.5011 21H60.8211L60.1211 19.012ZM59.6731 17.71L58.0911 13.188L56.4951 17.71H59.6731ZM65.6128 19.712H68.9028V21H64.0168V11.27H65.6128V19.712ZM71.8335 12.558V15.414H75.1935V16.716H71.8335V19.698H75.6135V21H70.2375V11.256H75.6135V12.558H71.8335ZM80.684 16.114C80.684 15.162 80.9033 14.308 81.342 13.552C81.79 12.796 82.392 12.208 83.148 11.788C83.9133 11.3587 84.7487 11.144 85.654 11.144C86.69 11.144 87.6093 11.4007 88.412 11.914C89.224 12.418 89.812 13.1367 90.176 14.07H88.258C88.006 13.5567 87.656 13.174 87.208 12.922C86.76 12.67 86.242 12.544 85.654 12.544C85.01 12.544 84.436 12.6887 83.932 12.978C83.428 13.2673 83.0313 13.6827 82.742 14.224C82.462 14.7653 82.322 15.3953 82.322 16.114C82.322 16.8327 82.462 17.4627 82.742 18.004C83.0313 18.5453 83.428 18.9653 83.932 19.264C84.436 19.5533 85.01 19.698 85.654 19.698C86.242 19.698 86.76 19.572 87.208 19.32C87.656 19.068 88.006 18.6853 88.258 18.172H90.176C89.812 19.1053 89.224 19.824 88.412 20.328C87.6093 20.832 86.69 21.084 85.654 21.084C84.7393 21.084 83.904 20.874 83.148 20.454C82.392 20.0247 81.79 19.432 81.342 18.676C80.9033 17.92 80.684 17.066 80.684 16.114ZM96.4821 21.098C95.5768 21.098 94.7415 20.888 93.9761 20.468C93.2201 20.0387 92.6181 19.446 92.1701 18.69C91.7315 17.9247 91.5121 17.066 91.5121 16.114C91.5121 15.162 91.7315 14.308 92.1701 13.552C92.6181 12.796 93.2201 12.208 93.9761 11.788C94.7415 11.3587 95.5768 11.144 96.4821 11.144C97.3968 11.144 98.2321 11.3587 98.9881 11.788C99.7535 12.208 100.355 12.796 100.794 13.552C101.233 14.308 101.452 15.162 101.452 16.114C101.452 17.066 101.233 17.9247 100.794 18.69C100.355 19.446 99.7535 20.0387 98.9881 20.468C98.2321 20.888 97.3968 21.098 96.4821 21.098ZM96.4821 19.712C97.1261 19.712 97.7001 19.5673 98.2041 19.278C98.7081 18.9793 99.1001 18.5593 99.3801 18.018C99.6695 17.4673 99.8141 16.8327 99.8141 16.114C99.8141 15.3953 99.6695 14.7653 99.3801 14.224C99.1001 13.6827 98.7081 13.2673 98.2041 12.978C97.7001 12.6887 97.1261 12.544 96.4821 12.544C95.8381 12.544 95.2641 12.6887 94.7601 12.978C94.2561 13.2673 93.8595 13.6827 93.5701 14.224C93.2901 14.7653 93.1501 15.3953 93.1501 16.114C93.1501 16.8327 93.2901 17.4673 93.5701 18.018C93.8595 18.5593 94.2561 18.9793 94.7601 19.278C95.2641 19.5673 95.8381 19.712 96.4821 19.712ZM111.017 21H109.421L104.619 13.734V21H103.023V11.256H104.619L109.421 18.508V11.256H111.017V21ZM117.551 21.098C116.645 21.098 115.81 20.888 115.045 20.468C114.289 20.0387 113.687 19.446 113.239 18.69C112.8 17.9247 112.581 17.066 112.581 16.114C112.581 15.162 112.8 14.308 113.239 13.552C113.687 12.796 114.289 12.208 115.045 11.788C115.81 11.3587 116.645 11.144 117.551 11.144C118.465 11.144 119.301 11.3587 120.057 11.788C120.822 12.208 121.424 12.796 121.863 13.552C122.301 14.308 122.521 15.162 122.521 16.114C122.521 17.066 122.301 17.9247 121.863 18.69C121.424 19.446 120.822 20.0387 120.057 20.468C119.301 20.888 118.465 21.098 117.551 21.098ZM117.551 19.712C118.195 19.712 118.769 19.5673 119.273 19.278C119.777 18.9793 120.169 18.5593 120.449 18.018C120.738 17.4673 120.883 16.8327 120.883 16.114C120.883 15.3953 120.738 14.7653 120.449 14.224C120.169 13.6827 119.777 13.2673 119.273 12.978C118.769 12.6887 118.195 12.544 117.551 12.544C116.907 12.544 116.333 12.6887 115.829 12.978C115.325 13.2673 114.928 13.6827 114.639 14.224C114.359 14.7653 114.219 15.3953 114.219 16.114C114.219 16.8327 114.359 17.4673 114.639 18.018C114.928 18.5593 115.325 18.9793 115.829 19.278C116.333 19.5673 116.907 19.712 117.551 19.712ZM127.297 21.098C126.644 21.098 126.056 20.986 125.533 20.762C125.01 20.5287 124.6 20.202 124.301 19.782C124.002 19.362 123.853 18.872 123.853 18.312H125.561C125.598 18.732 125.762 19.0773 126.051 19.348C126.35 19.6187 126.765 19.754 127.297 19.754C127.848 19.754 128.277 19.6233 128.585 19.362C128.893 19.0913 129.047 18.746 129.047 18.326C129.047 17.9993 128.949 17.7333 128.753 17.528C128.566 17.3227 128.328 17.164 128.039 17.052C127.759 16.94 127.367 16.8187 126.863 16.688C126.228 16.52 125.71 16.352 125.309 16.184C124.917 16.0067 124.581 15.736 124.301 15.372C124.021 15.008 123.881 14.5227 123.881 13.916C123.881 13.356 124.021 12.866 124.301 12.446C124.581 12.026 124.973 11.704 125.477 11.48C125.981 11.256 126.564 11.144 127.227 11.144C128.17 11.144 128.94 11.382 129.537 11.858C130.144 12.3247 130.48 12.9687 130.545 13.79H128.781C128.753 13.4353 128.585 13.132 128.277 12.88C127.969 12.628 127.563 12.502 127.059 12.502C126.602 12.502 126.228 12.6187 125.939 12.852C125.65 13.0853 125.505 13.4213 125.505 13.86C125.505 14.1587 125.594 14.406 125.771 14.602C125.958 14.7887 126.191 14.938 126.471 15.05C126.751 15.162 127.134 15.2833 127.619 15.414C128.263 15.5913 128.786 15.7687 129.187 15.946C129.598 16.1233 129.943 16.3987 130.223 16.772C130.512 17.136 130.657 17.626 130.657 18.242C130.657 18.7367 130.522 19.2033 130.251 19.642C129.99 20.0807 129.602 20.4353 129.089 20.706C128.585 20.9673 127.988 21.098 127.297 21.098ZM132.008 16.114C132.008 15.162 132.228 14.308 132.666 13.552C133.114 12.796 133.716 12.208 134.472 11.788C135.238 11.3587 136.073 11.144 136.978 11.144C138.014 11.144 138.934 11.4007 139.736 11.914C140.548 12.418 141.136 13.1367 141.5 14.07H139.582C139.33 13.5567 138.98 13.174 138.532 12.922C138.084 12.67 137.566 12.544 136.978 12.544C136.334 12.544 135.76 12.6887 135.256 12.978C134.752 13.2673 134.356 13.6827 134.066 14.224C133.786 14.7653 133.646 15.3953 133.646 16.114C133.646 16.8327 133.786 17.4627 134.066 18.004C134.356 18.5453 134.752 18.9653 135.256 19.264C135.76 19.5533 136.334 19.698 136.978 19.698C137.566 19.698 138.084 19.572 138.532 19.32C138.98 19.068 139.33 18.6853 139.582 18.172H141.5C141.136 19.1053 140.548 19.824 139.736 20.328C138.934 20.832 138.014 21.084 136.978 21.084C136.064 21.084 135.228 20.874 134.472 20.454C133.716 20.0247 133.114 19.432 132.666 18.676C132.228 17.92 132.008 17.066 132.008 16.114ZM147.806 21.098C146.901 21.098 146.066 20.888 145.3 20.468C144.544 20.0387 143.942 19.446 143.494 18.69C143.056 17.9247 142.836 17.066 142.836 16.114C142.836 15.162 143.056 14.308 143.494 13.552C143.942 12.796 144.544 12.208 145.3 11.788C146.066 11.3587 146.901 11.144 147.806 11.144C148.721 11.144 149.556 11.3587 150.312 11.788C151.078 12.208 151.68 12.796 152.118 13.552C152.557 14.308 152.776 15.162 152.776 16.114C152.776 17.066 152.557 17.9247 152.118 18.69C151.68 19.446 151.078 20.0387 150.312 20.468C149.556 20.888 148.721 21.098 147.806 21.098ZM147.806 19.712C148.45 19.712 149.024 19.5673 149.528 19.278C150.032 18.9793 150.424 18.5593 150.704 18.018C150.994 17.4673 151.138 16.8327 151.138 16.114C151.138 15.3953 150.994 14.7653 150.704 14.224C150.424 13.6827 150.032 13.2673 149.528 12.978C149.024 12.6887 148.45 12.544 147.806 12.544C147.162 12.544 146.588 12.6887 146.084 12.978C145.58 13.2673 145.184 13.6827 144.894 14.224C144.614 14.7653 144.474 15.3953 144.474 16.114C144.474 16.8327 144.614 17.4673 144.894 18.018C145.184 18.5593 145.58 18.9793 146.084 19.278C146.588 19.5673 147.162 19.712 147.806 19.712Z"
+                    fill="white" />
+            </svg>
+        </a>
+    </div>
+    {% endif %}    
+    
+    {% if pages.current == 'home' %}
+        <!--popup janela de captura -->
+         {% element 'snippets/modal-newsletter' %}
+    {% endif %}
+
+    <!-- tray -->
+    {% element 'snippets/modal' %}
+    
+    {% element 'snippets/pageview' %}
+    {{ store.chat }}
+
+    <link rel="stylesheet" href="{{ asset('css/rSlider.css') }}" type="text/css">
+    <span id="em-" style="display:none;">em at&eacute;</span>
+
+    {% element 'scripts' %}
+</body>
+
+</html>
+{% endspaceless %}

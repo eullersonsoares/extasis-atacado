@@ -1,0 +1,49 @@
+{% if banners.home.slides %}
+    {% if pages.current == 'home' and banner.home %}
+        {% if settings.fullbanner_tipo == "cemporcento" %}
+            <section class="banners">
+        {% elseif settings.fullbanner_tipo == "centralizado" %}
+            <section class="banners container-custom">
+        {% endif %}
+            {% if not utils.is_mobile %}
+            <div class="banner-arrows advert" data-slick='{"autoplaySpeed": {{ ( settings.banner_interval ) }},
+                     "lazyload":     "{{ ( settings.banner_lazyload ) }}",
+                                      {{ ( settings.banner_arrows )             ? '"arrows":         true,' : '"arrows":         false,' }}
+                                      {{ ( settings.banner_dots )               ? '"dots":           true,' : '"dots":           false,' }}
+                                      {{ ( settings.banner_autoplay )           ? '"autoplay":       true,' : '"autoplay":       false,' }}
+                                      {{ ( settings.banner_adaptive_height )    ? '"adaptiveHeight": true,' : '"adaptiveHeight": false,' }}
+                                      {{ ( settings.banner_infinite )           ? '"infinite":       true,' : '"infinite":       false,' }}
+                                      {{ ( settings.banner_effect_fade )        ? '"fade":           false'  : '"fade":           false'  }} }'
+                data-autoplay="{{ settings.banner_autoplay ? 'true' : 'false' }}">
+
+                    {% for slide in banners.home.slides %}
+                        <div{{ loop.index == 1 ? ' class="first-slide"' }}>
+                            <a href="{{ slide.link }}" target="{{ slide.target }}">
+                                <img class="lazyload" data-sizes="auto" width="1299px" height="477.984px" data-src="{{ slide.image }}" alt="{{ slide.label }}">
+                            </a>    
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="banner-arrows advert-mobile">
+                    {% for slide in banners.mobile.slides %}
+                        <div{{ loop.index == 1 ? ' class="first-slide"' }}>
+                            <a href="{{ slide.link }}" target="{{ slide.target }}">
+                                <img class="lazyload" data-sizes="auto" data-src="{{ slide.image }}" alt="{{ slide.label }}" width="375px" height="484px">
+                            </a>    
+                        </div>
+                    {% endfor %}
+                </div>            
+            {% endif %}
+        </section>
+    {% endif %}
+{% else %}
+<section class="banners">
+  {{ banner.home }}
+  {% if banner.home %}
+        <a href="{{ banners.home.link }}" target="{{ banners.home.target }}" title="{{ banners.home.alt }}">
+            <img class="lazyload" data-sizes="auto" data-src="{{ banners.home.src }}" alt="{{ banners.home.alt }}">
+        </a>
+    {% endif %}
+</section>
+{% endif %}

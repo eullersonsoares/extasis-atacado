@@ -1,0 +1,113 @@
+<div class="nkol-custom-catalog">
+    
+    <div class="search-extra-code">
+    </div>
+    {% if false %}
+    {% if not utils.is_mobile %}
+    <div class="top-catalog">
+        <div class="row">
+            <span class="col-sm-12 col-md-4">
+                {% element 'snippets/pagination' %}
+            </span>
+            <span class="col-sm-12 col-md-8">
+                {% element 'snippets/filter' {
+                    'brands': category.brands
+                } %}
+            </span>
+        </div>
+    </div>
+    {% else %}
+    <div class="top-catalog">
+        <div class="row">
+            <span class="col-sm-12">
+                {% element 'snippets/filter' {
+                    'brands': category.brands
+                } %}
+            </span>
+        </div>
+    </div>
+    {% endif %}
+    {% endif %}
+    <!--
+    <div class="pagination-down">
+        {% element 'snippets/pagination' %}
+    </div>
+    -->
+    {% if products|length > 0 %}
+        <!-- COM FILTRO -->
+        {% if settings.exibirfiltro == "sim" %}
+        
+            <!-- filtro -->
+            {% if utils.is_mobile %}
+                {% element 'snippets/menu-filter' %}
+                
+                <label class="dispenser-filter" for="controlTaxoFilter">
+                    <h1>{{ category.name }}</h1>
+                    <div><svg xmlns="http://www.w3.org/2000/svg" enable-background="new 0 0 24 24" height="24" viewBox="0 0 24 24" width="24"><g><path d="M0,0h24 M24,24H0" fill="none"/><path d="M4.25,5.61C6.27,8.2,10,13,10,13v6c0,0.55,0.45,1,1,1h2c0.55,0,1-0.45,1-1v-6c0,0,3.72-4.8,5.74-7.39 C20.25,4.95,19.78,4,18.95,4H5.04C4.21,4,3.74,4.95,4.25,5.61z"/><path d="M0,0h24v24H0V0z" fill="none"/></g></svg> Filtro</div>
+                </label>
+            {% endif %}
+            <span class="hidden-xs hidden-sm col-md-2 filter-none-mobile">
+                <h1>{{ category.name }}</h1>
+                {% element 'snippets/smart_filter' %}
+            </span>
+
+            
+            <!-- /filtro -->
+            
+            <span class="col-sm-12 col-md-10">
+                <div class="container_listagem catalogo_categorias">
+                <div class="row">
+                {% if not utils.is_mobile %}
+                    {% element 'snippets/display' {
+                        "products": products
+                    } %}
+                {% else %}
+                    <h1 class="titletag-mobile cat">{{ category.name }}</h1>
+                    <p>{{ category.small_description }}</p>
+                    <span class="numbercatg cat">
+                        {% element 'snippets/pagination' %}
+                    </span>
+                    {% element 'snippets/display-2col' {
+                        "products": products
+                    } %}
+                {% endif %}
+                </div>
+                </div>
+                <!--<div class="carregarMais" onclick="carregarMais()">carregar mais produtos</div>-->
+            </span>
+            <span class="col-sm-12">
+                <div class="bottom-pagination">
+                    {% element 'snippets/pagination' %}
+                </div>
+            </span>
+        <!-- SEM FILTRO -->
+        {% elseif settings.exibirfiltro == "nao" %}
+            <div class="row">
+                <span class="col-sm-12 col-md-12">
+                    <h1>{{ category.name }}</h1>
+                    <p>{{ category.small_description }}</p>
+                    {% element 'snippets/display' {
+                        "products": products
+                    } %}
+                </span>
+                <span class="col-sm-12">
+                    <div class="bottom-pagination">
+                        {% element 'snippets/pagination' %}
+                    </div>
+                </span>
+            </div>
+        {% endif %}
+    {% else %}
+        <h1>{{ category.name }}</h1>
+        {% if category.small_description %}
+        <div class="category-description">
+            {{ category.small_description }}
+        </div>
+        {% endif %}
+        </br>
+        <p>{{ Translation('nenhum_resultado') }}</p>
+        </br>
+    {% endif %}
+    
+    
+</div>

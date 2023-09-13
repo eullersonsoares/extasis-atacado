@@ -1,0 +1,15 @@
+<div class="slider custom-arrow-slider">
+{% for product in products %}
+<div class="product-slide">
+<div class="col-sm-12">
+        
+{% element 'snippets/product' {"product": product} %}
+        
+</div> 
+</div>
+{% if loop.index is divisible by(50) %}
+</div>
+<div class="row">
+{% endif %}
+{% endfor %}
+</div><!--/ row -->

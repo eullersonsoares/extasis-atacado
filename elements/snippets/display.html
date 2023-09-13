@@ -1,0 +1,13 @@
+<div class="clearfix listagem">
+{% for product in products %}
+<div class="col-sm-3">
+
+    {% element 'snippets/product' {"product": product} %}
+    
+</div>
+{% if loop.index is divisible by(4) %}
+</div>
+<div class="clearfix">
+{% endif %}
+{% endfor %}
+</div>

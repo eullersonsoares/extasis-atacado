@@ -1,0 +1,17 @@
+{% if settings.exibir_googletagmanager == "sim" %}
+    {{ googleTagManager.bottom(pages.current, tagManagerData) }}
+{% endif %}
+<!-- tray scripts -->
+{{ tray.scripts }}
+{{ html.script('dist/application.min.js?' ~ utils.assets_version) }}
+
+<!-- theme scripts-->
+<script type="text/javascript" src="{{ asset('js/theme.min.js') }}" async ></script>
+<script type="text/javascript" src="{{ asset('js/jquery.jcarousel.min.js') }}" async ></script>
+
+<script type="text/javascript" src="{{ asset('js/rSlider.min.js') }}" async ></script>
+
+<script src="{{ asset('js/custom-dev.js') }}" async ></script>
+<script src="{{ asset('js/custom.min.js') }}" async ></script>
+
+<script src="{{ asset('js/lazysizes.min.js') }}" async ></script>

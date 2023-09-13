@@ -1,0 +1,117 @@
+<div class="item-product-11">
+
+    <div class="bg-contrast" itemprop="http://schema.org/offers" itemscope itemtype="http://schema.org/Offer">
+    <div class="product-wapper item-product">
+        <a href="{{ product.link }}" class="join-elements">
+            
+            <div href="{{ product.link }}" class="product-image">
+                <div id="cardImg{{product.id}}" class="product-image2">
+                    {% if not utils.is_mobile %}
+                        <img class="lazyload" data-sizes="auto" data-src="{{ product.images[0].large }}" alt="{{ product.name }}">
+                        {% if product.images[1]|length > 0 %}
+                        <div class="second-image">
+                            <img class="lazyload" data-sizes="auto" data-src="{{ product.images[1].large }}" alt="{{ product.name }}">
+                        </div>
+                        {% endif %}
+                    {% else %}
+                        <img class="lazyload" data-sizes="auto" data-src="{{ product.images[0].large }}" alt="{{ product.name }}">
+                    {% endif %}
+                </div> 
+            </div>  
+             
+            {% if not utils.is_mobile %}
+                {% if product.variants %}
+                <div id="variacao-imagens">
+                    <div id="variants{{ product.id }}">
+                        <ul id="imagemprod{{ product.id }}">
+                            {% for variant in product.images %}
+                                <li style="display:none">
+                                      <img class="lazyload"data-sizes="auto" data-src="{{ variant.full }}" alt="{{ product.name }}">
+                                </li>
+                            {% endfor %}
+                        </ul>
+                    </div>
+                </div>
+                {% endif %}
+            {% endif %}
+            
+            {% if product.additional_button %}
+                <figure class="custom-additional-button">{{ Image('additional_button') }}</figure>
+            {% endif %}
+        
+            {% if false %}
+            <section class="btns-store">
+                {% if product.new or product.featured or product.free_shipping or product.price_offer > 0 %}
+                {% if product.new %}
+                <h5 class="color-base-bg">Lan&ccedil;amento</h5>
+                {% endif %}
+                
+                {% if product.free_shipping %}
+                <h5 class="color-base-bg">Frete Gr&aacute;tis</h5>
+                {% endif %}
+                
+                {% if product.price_offer > 0 and product.show_price %}
+                <h5 class="color-base-bg">Promo&ccedil;&atilde;o</h5>
+                {% endif %}
+                {% endif %}
+            </section><!--/btns-store-->
+            {% endif %}
+        </a><!--/ join-elements -->
+            
+        <div class="product-name" itemprop="name">
+            <h3><a href="{{ product.link }}">{{ product.name }}</a></h3>
+        </div>
+
+        <div class="container-price-bottom first">
+            <div class="price-all" itemprop="http://schema.org/offers" itemscope itemtype="http://schema.org/Offer">
+                <div class="price-all"
+              {% if product.available %}
+                {% if product.stock > 0 %}
+                  {% if product.upon_request %}
+                    <div class="sobconsulta">Produto sob consulta!<!--{{ Image('upon_request') }}--></div>
+                  {% else %}
+                      
+                    <div data-module="pricing" data-snippet="snippets/preco_product" data-product-id="{{ product.id }}">
+                        aguarde, carregando preï¿½o...
+                    </div> 
+                    
+                    {% if false %}
+                    <div class="btn-buy">
+                        {% if product.variants %}
+                        <a href="{{ product.link }}">
+                            {{ Image('buy') }}
+                        </a>
+                        {% else %}
+                        {% if settings.exibir_addcart == "sim" %}
+                        {% element 'snippets/fastbuy-home' {"product": product} %}
+                        {% else %}
+                        <a href="{{ product.link }}">
+                            {{ Image('buy') }}
+                        </a>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                    {% endif %}
+                  {% endif %}
+                {% else %}
+                  <div class="esgotado">
+                      <div class="ccc" style="padding-top: 22px;">
+                          Esgotado!
+                        </div>
+                    </div>
+                {% endif %}
+              {% else %}
+                <div class="indisponivel">Produto indisponï¿½vel</div>
+              {% endif %}
+            </div>
+        </div>
+        <a class="container-price-btn" href="{{ product.link }}" >
+            <button class="vitrine-buy" data-app="product.buy-button" data-product ="{{ product.id }}" >
+                CADASTRE-SE
+            </button>
+        </a>
+
+    </div>
+</div><!--/ product-wrapper -->
+
+</div>

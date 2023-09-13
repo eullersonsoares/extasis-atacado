@@ -1,0 +1,47 @@
+<nav role="navigation" class="menu-store menu-sub-1col">
+    <ul class="list-menu symbols nav-justified">
+        {% set id_taxo = settings.idscateg %}
+        {% for taxo in categories %}
+            {% if taxo.id in id_taxo %}
+                {% if loop.index <= limit or not limit %} 
+                    <li class="item-menu color-detail-bg-hover" id="menu-{{ taxo.id }}">
+                        <h3>
+                            <a href="{{ taxo.link }}" class="link-menu">{{ taxo.name }}</a>
+                            {% if taxo.children > 0 %}
+                            <span class="triangle"></span>
+                            {% endif %}
+                        </h3>
+                        {% if taxo.children > 0 %}
+                        <div class="menu-sub color-detail-border">
+                            <ul class="menu-heir">
+                                {% for taxo_heir in taxo.children %}
+                                    <li class="menu-item-heir color-detail-bg-hover">
+                                        {% if taxo_heir.children %}
+                                        <span class="triangle"></span>
+                                        {% endif %}
+                                        <h4>
+                                            <a href="{{ taxo_heir.link }}" class="ink-menu-heir">{{ taxo_heir.name }}</a>
+                                        </h4>
+                                        
+                                        {% if taxo_heir.children  %}
+                                            <div class="menu-filos color-detail-border">
+                                            
+                                            {% for child in taxo_heir.children %}
+                                                <div class=" color-detail-bg-hover">
+                                                    <a href="{{ child.link }}">{{ child.name }}</a>
+                                                </div>
+                                            {% endfor %}
+                                            </div>
+                                        {% endif %}
+                                        
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                        {% endif %}
+                    </li>
+               {% endif %}
+            {% endif %}
+        {% endfor %}
+    </ul>
+</nav>

@@ -1,0 +1,13 @@
+{% if customer.logged %}
+<a href="lista.php?loja=845934&amp;acao=incluir&amp;id_lista=1&amp;id_produto={{ product.id }}&amp;variacao=%s"
+id="adiciona_desejo_1" class="color" onclick="return (validaVars('span_erro_carrinho',1,'1') &amp;&amp; pegaVariacao('adiciona_desejo_1'))"><img src="{{ asset('img/heart.png') }}" alt=""></a>
+
+{% else %}
+
+<a href="login_layout.php?loja=845934&amp;origem=produto&amp;IdProd={{ product.id }}&amp;variacao=%s"
+id="adiciona_desejo_1" class="color" onclick="return (validaVars('span_erro_carrinho',1,'1') &amp;&amp; pegaVariacao('adiciona_desejo_1'))"><img src="{{ asset('img/heart.png') }}" alt=""></a>
+{% endif %}
+
+{% if false %}
+{{ productHelper.wishlist() }}
+{% endif %}

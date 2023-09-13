@@ -1,0 +1,179 @@
+<!--{% if settings.modal_newsletter == "sim" %}-->
+<!--<div id="showModalNewsletter">-->
+<!--    <div class="underlay"></div>-->
+<!--    <div class="modal color-detail-bg" id="showNewsletter">-->
+<!--        <div class="img-bg-modal">-->
+<!--            {{banner.extra4}}-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+<!--            <span class="modal-close b-close">&times;</span>-->
+<!--            <h1>(Re) descubra a <br/>Lingerie Extasis</h1>-->
+<!--            <p>Quer receber novidades e promos exclusivas?<br/>Cadastre-se aqui!</p>-->
+            <!-- <p class="color-base small">{{ settings.newsletter_frase3 }}</p> -->
+<!--            <form action="{{ links.newsletter }}" method="POST">-->
+<!--                <input type="hidden" name="loja" value="{{ store.id }}">-->
+<!--                <input type="text" name="name" placeholder="Seu nome" required>-->
+<!--                <input name="email" type="email" placeholder="Seu email" required>-->
+<!--                <button class="color-base-bg btn btn-default btn-block news-button">Cadastrar</button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
+<!--{% endif %}-->
+
+
+<!--{% if settings.modal_newsletter != "nï¿½o" %}
+<div id="showModalNewsletter">
+    <div class="underlay"></div>
+    <div class="modal color-detail-bg" id="showNewsletter">
+        <div class="img-bg-modal">
+            {% if banner.extra4 %}
+            <a href="{{ banners.extra4.link }}" target="{{ banners.extra4.target }}" title="{{ banners.extra4.alt }}">
+                <img class="lazyload" data-sizes="auto" data-src="{{ banners.extra4.src }}" alt="{{ banners.extra4.alt }}">
+            </a>
+        {% endif %}
+            <div class="modal-body">
+                <span class="modal-close b-close">&times;</span>
+                <h1 style="opacity: 0;">(Re) descubra a <br/>Lingerie Extasis</h1>
+                <p style="opacity: 0;">Quer receber novidades e promos exclusivas?<br/>Cadastre-se aqui!</p>-->
+                
+                <!-- NÃO DESCOMENTAR <p class="color-base small">{{ settings.newsletter_frase3 }}</p> -->
+                
+                <!--<form action="{{ links.newsletter }}" method="POST">
+                    <input type="hidden" name="loja" value="{{ store.id }}">
+                    <input type="text" name="name" placeholder="Seu nome" required>
+                    <input name="email" type="email" placeholder="Seu email" required>
+                    <button class="color-base-bg btn btn-default btn-block news-button">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+        <div class="img-bg-modal2" style="display: none;">
+            {% if banner.extra5 %}
+                <a href="{{ banners.extra5.link }}" target="{{ banners.extra5.target }}" title="{{ banners.extra5.alt }}">
+                    <img class="lazyload" data-sizes="auto" data-src="{{ banners.extra5.src }}" alt="{{ banners.extra5.alt }}">
+                </a>
+            {% endif %}
+            <div class="modal-body">
+                <span class="modal-close b-close">&times;</span>
+                <h1 style="opacity: 0;">(Re) descubra a <br/>Lingerie Extasis</h1>
+                <p style="opacity: 0;">Quer receber novidades e promos exclusivas?<br/>Cadastre-se aqui!</p>-->
+                
+                <!-- NÃO DESCOMENTAR <p class="color-base small">{{ settings.newsletter_frase3 }}</p> -->
+                
+                <!--<form action="{{ links.newsletter }}" method="POST">
+                    <input type="hidden" name="loja" value="{{ store.id }}">
+                    <input type="text" name="name" placeholder="Seu nome" required>
+                    <input name="email" type="email" placeholder="Seu email" required>
+                    <button class="color-base-bg btn btn-default btn-block news-button">Cadastrar</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endif %}-->
+<style>
+    
+    @media(max-width:1024px){
+    /*Pop up - Mobile*/
+    #showNewsletter .img-bg-modal{
+        display: block !important;
+    }
+
+    #showNewsletter .img-bg-modal2{
+            display: none !important;
+    }
+
+
+    #showNewsletter .img-bg-modal2 .modal-body {
+        margin-top: -98%;
+        margin-left: -11px !important;
+    }
+    #showModalNewsletter .modal h1{
+        font-family: 'Poppins';
+        font-weight: 400;
+        color: #fff;
+        font-style: italic;
+        font-size: 31px !important;
+        margin-top: 10.5px!important;
+        padding: 0 0 15px;
+        margin: 0;
+        display: inline-block;
+        line-height: 1;
+    }
+    #showModalNewsletter .modal p{
+        font-family: 'Poppins';
+        color: #fff;
+        font-size: 11px !important;
+        line-height: 1.2;
+        margin-top: -7px;
+        margin-bottom: 16px;
+        padding-right: 35px;
+    }
+    .modal-body form {
+        display: flex;
+        flex-direction: column;
+        margin-top:34px;
+    }
+    #showModalNewsletter .modal input{
+        width: 252px !important;
+        margin-bottom: 7px;
+        margin-right: 10px;
+        padding: 10px 25px;
+        border: 0;
+        border-radius: 5px;
+    }
+    #showModalNewsletter .modal button{
+        width: 180px!important;
+        padding: 10px 25px;
+        margin-top: 6px!important;
+        border: 0;
+        color: #fff;
+        border-radius: 5px;
+    }
+    #showModalNewsletter .modal-close {
+        top: 30px!important;
+    }
+    }
+
+
+    @media(max-width:425px){
+        #showNewsletter .img-bg-modal2{
+            display: block !important;
+        }
+
+        #showNewsletter .img-bg-modal{
+            display: none !important;
+        }
+
+        #showModalNewsletter .modal-close{
+            margin-top: -36px!important;
+        }
+
+        .modal-body form{
+            margin-top: 0px;
+        }
+    }
+
+
+    @media(max-width:320px){
+        .modal-body form{
+            margin-top: -132px !important;
+        }
+
+        #showModalNewsletter .modal button{
+            margin-top: 2px!important;
+        }
+    }
+
+    @media(max-width:375px){
+        .modal-body form{
+            margin-top: 30px !important;
+        }
+        #showModalNewsletter .modal p{
+            margin-top: -2px;
+        }
+    }
+    
+</style>
+ 
+
